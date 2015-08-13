@@ -3,6 +3,11 @@ Docker image for continuous builds using Broccoli.
 
 This image uses `inotifywait` to poll a project directory for changes. If modifications, creations, or deletions occur, `broccoli build` is run.
 
+My use case (that is, why I originally put this image together):
+* Write JavaScript in ES6/Harmony.
+* Use Broccoli to run a Babel transpile if any files change.
+* I can point my browser to a local application server instead of the one used by `broccoli serve`.
+
 ## Volumes
 
 By default, this image sets up a volume at `/opt/broccoli/project`. You can either use the `-v` flag of `docker run` to mount your project, or you could build your own Docker image that checks out your project from source.
