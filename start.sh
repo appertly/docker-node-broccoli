@@ -11,8 +11,14 @@ then
 fi
 SRC=${SRC_DIR:-src}
 DIST=${DIST_DIR:-dist}
+
+do_build() {
+    rm -rf $DIST
+    broccoli build $DIST
+    chown -R $OUID:$OGID $DIST
+}
+
+do_build
 inotifywait -q -m -r -e modify -e create -e delete $SRC | while read f; do
-    rm -rf $DIST \
-        && broccoli build $DIST \
-        && chown -R $OUID:$OGID $DIST
+    do_build
 done
