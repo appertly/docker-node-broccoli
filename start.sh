@@ -19,6 +19,6 @@ do_build() {
 }
 
 do_build
-inotifywait -q -m -r -e modify -e create -e delete $SRC | while read f; do
+inotifywait -q -m -r -e close_write -e move_self -e create -e delete $SRC | while read f; do
     do_build
 done
