@@ -14,7 +14,7 @@ RUN apt-get update \
     && npm install --save broccoli \
     && npm install --save broccoli-babel-transpiler \
     && npm install --save broccoli-funnel \
-    && npm install --save broccoli-concat \
+    && npm install --save broccoli-concat-cabbage \
     && npm install --save broccoli-merge-trees \
     && npm install --save broccoli-uglify-js \
     && npm install --save broccoli-clean-css \
