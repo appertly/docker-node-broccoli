@@ -1,29 +1,16 @@
 FROM node:0.10
 MAINTAINER Jonathan Hawk <jonathan@appertly.com>
 
-WORKDIR /opt/broccoli
-
-ADD package.json /opt/broccoli/package.json
-
-RUN apt-get update \
-    && apt-get install -y inotify-tools \
+RUN npm install --global broccoli-cli \
+    && npm install --global broccoli-timepiece \
+    && rm -rf /tmp/* /var/tmp/* \
     && rm -rf /var/lib/apt/lists/* \
-    && npm install --global broccoli-cli \
-    && mkdir src \
-    && mkdir dist \
-    && npm install --save broccoli \
-    && npm install --save broccoli-babel-transpiler \
-    && npm install --save broccoli-funnel \
-    && npm install --save broccoli-concat-cabbage \
-    && npm install --save broccoli-merge-trees \
-    && npm install --save broccoli-uglify-js \
-    && npm install --save broccoli-clean-css \
-    && npm dedupe
-
-ENV SRC_DIR src
-ENV DIST_DIR dist
+    && rm -rf /var/log/apt/* \
+    && rm -rf /var/log/dpkg.log \
+    && rm -rf /var/log/bootstrap.log \
+    && rm -rf /var/log/alternatives.log
 
 VOLUME ["/opt/broccoli/project"]
-ADD start.sh /scripts/start.sh
-RUN chmod +x /scripts/start.sh
-CMD ["/scripts/start.sh"]
+WORKDIR /opt/broccoli/project
+ENTRYPOINT ["/usr/local/bin/broccoli-timepiece"]
+CMD ["dist"]
