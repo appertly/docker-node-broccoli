@@ -17,10 +17,8 @@ function createWatcher(destDir, argv) {
 
   var atExit = function() {
     builder.cleanup()
-      .then(function() {
-        rimraf.sync("./broccoli-timepiece-failure.json");
-        process.exit(1);
-      });
+    rimraf.sync("./broccoli-timepiece-failure.json");
+    process.exit(1);
   };
 
   process.on('SIGINT', atExit);
