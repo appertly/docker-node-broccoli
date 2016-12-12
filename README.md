@@ -1,7 +1,7 @@
 # docker-node-broccoli
-Docker image for continuous builds using Broccoli.
+Docker image for continuous builds using Broccoli 1.x.
 
-This image uses `broccoli-timepiece` to poll a project directory for changes. If any modifications occur, a Broccoli build runs.
+This image uses a fork of `broccoli-timepiece` to poll a project directory for changes. If any modifications occur, a Broccoli build runs.
 
 My use case (that is, why I originally put this image together):
 * Write JavaScript in ES6/Harmony.

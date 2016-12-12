@@ -1,17 +1,10 @@
 FROM node:7.1
 MAINTAINER Jonathan Hawk <jonathan@appertly.com>
 
-ADD package.json /tmp
-ADD index.js /tmp
-
 RUN npm install --global broccoli-cli \
-    && npm install --global broccoli-timepiece \
-    && cd /usr/local/lib/node_modules/broccoli-timepiece \
-    && cp /tmp/package.json /usr/local/lib/node_modules/broccoli-timepiece \
-    && cp /tmp/index.js /usr/local/lib/node_modules/broccoli-timepiece \
+    && npm install --global doublecompile/broccoli-timepiece#feature-broccoli-1.0 \
     && git config --system user.name Docker \
     && git config --system user.email docker@localhost \
-    && npm install \
     && rm -rf /tmp/* /var/tmp/* \
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf /var/log/apt/* \
